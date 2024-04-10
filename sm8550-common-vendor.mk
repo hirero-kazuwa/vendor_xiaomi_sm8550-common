@@ -1634,8 +1634,6 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.AGMIPC@1.0-impl \
     vendor.qti.hardware.pal@1.0-impl \
     libagmdevice \
-    CACertService \
-    CneApp \
     IWlanService \
     TimeService \
     TrustZoneAccessService \
@@ -1697,7 +1695,6 @@ PRODUCT_PACKAGES += \
     dataconnection-saidl \
     deviceinfo-saidl \
     imsdcservice-saidl \
-    manifest_android.hardware.drm-service.widevine \
     manifest_identity_credential \
     manifest_non_qmaa \
     manifest_non_qmaa_extn \
