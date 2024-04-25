@@ -69,14 +69,14 @@
 <resource_manager_info>
     <version>2.0</version>
     <config_params>
-        <param key="native_audio_mode" value="multiple_mix_dsp"/>
+        <param key="native_audio_mode" value="false"/>
         <!-- Uncomment HIFI Filter Headphones related sections when set this
              hifi_filter key to true -->
         <param key="hifi_filter" value="false"/>
         <param key="max_sessions" value="128"/>
         <param key="max_nonTunnel_sessions" value="4"/>
-        <param key="logging_level" value ="3" />
-        <param key="context_manager_enable" value ="false" />
+        <param key="logging_level" value ="0x7" />
+        <param key="context_manager_enable" value ="true" />
         <param key="upd_dedicated_be" value ="true" />
         <param key="upd_duty_cycle_enable" value="false" />
         <param key="dual_mono" value ="false" />
@@ -183,6 +183,10 @@
                     <channels>2</channels>
                     <samplerate>16000</samplerate>
                     <snd_device_name>va-mic-asr</snd_device_name>
+                </custom-config>
+                <custom-config key="camcorder_zoom">
+                    <channels>3</channels>
+                    <snd_device_name>camcorder-tmic-azoom</snd_device_name>
                 </custom-config>
                 <custom-config key="unprocessed-hdr-mic-landscape">
                     <channels>4</channels>
@@ -315,6 +319,10 @@
                     <snd_device_name>handset-stereo-dmic-ef</snd_device_name>
                     <bit_width>24</bit_width>
                 </custom-config>
+                <custom-config key="camcorder_zoom">
+                    <channels>3</channels>
+                    <snd_device_name>camcorder-tmic-azoom</snd_device_name>
+                </custom-config>
                 <custom-config key="unprocessed-hdr-mic-landscape">
                     <channels>4</channels>
                     <snd_device_name>unprocessed-hdr-mic-landscape</snd_device_name>
@@ -375,6 +383,10 @@
                     <channels>2</channels>
                     <snd_device_name>speaker-dmic-endfire</snd_device_name>
                 </custom-config>
+                <custom-config key="triple-mic">
+                    <channels>3</channels>
+                    <snd_device_name>speaker-tmic-endfire</snd_device_name>
+                </custom-config>
             </usecase>
             <usecase>
                 <name>PAL_STREAM_VOICE_CALL</name>
@@ -385,6 +397,10 @@
                 <custom-config key="dual-mic">
                     <channels>2</channels>
                     <snd_device_name>speaker-dmic-endfire</snd_device_name>
+                </custom-config>
+                <custom-config key="triple-mic">
+                    <channels>3</channels>
+                    <snd_device_name>speaker-tmic-endfire</snd_device_name>
                 </custom-config>
                 <custom-config key="quad-mic">
                     <channels>4</channels>
@@ -751,14 +767,23 @@
                 <priority>1</priority>
                 <samplerate>96000</samplerate>
             </usecase>
+            <usecase>
+                <name>PAL_STREAM_DEEP_BUFFER</name>
+                <custom-config key="speaker-lp-mode-l1">
+                    <snd_device_name>speaker</snd_device_name>
+                </custom-config>
+                <custom-config key="speaker-lp-mode-l5">
+                    <snd_device_name>speaker-lp-l5</snd_device_name>
+                </custom-config>
+            </usecase>
         </out-device>
         <out-device>
             <id>PAL_DEVICE_OUT_HANDSET</id>
-            <back_end_name>TDM-LPAIF-RX-SECONDARY</back_end_name>
+            <back_end_name>CODEC_DMA-LPAIF_RXTX-RX-1</back_end_name>
             <max_channels>2</max_channels>
             <channels>1</channels>
             <!-- To enable external EC reference the flag extec_ref_enabled must be added as 1 -->
-            <ext_ec_ref_enabled>1</ext_ec_ref_enabled>
+            <ext_ec_ref_enabled>0</ext_ec_ref_enabled>
             <samplerate>48000</samplerate>
             <!--NEED CHK-->
             <bit_width>24</bit_width>
@@ -964,6 +989,14 @@
             <usecase>
                 <name>PAL_STREAM_VOICE_CALL</name>
                 <priority>1</priority>
+            </usecase>
+            <usecase>
+                <name>PAL_STREAM_COMPRESSED</name>
+                <bit_width>24</bit_width>
+            </usecase>
+            <usecase>
+                <name>PAL_STREAM_PCM_OFFLOAD</name>
+                <bit_width>24</bit_width>
             </usecase>
         </out-device>
         <out-device>
